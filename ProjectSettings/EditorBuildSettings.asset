@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 11c34eae80463d54fa702e9a89c92b03
+  - enabled: 1
+    path: Assets/Resources/Prefabs/Missions/Test1/Test1.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Resources/Prefabs/Missions/Test2/Test2.unity
+    guid: 5e10b7f583301e3488279e2953bd4692
+  - enabled: 1
+    path: Assets/Resources/Prefabs/Missions/Mission_1/Mission_1.unity
+    guid: 111a62f771b91994eb28af862306e096
+  - enabled: 1
+    path: Assets/Resources/Prefabs/Missions/TestPolo/TestPolo.unity
+    guid: 82240779b11250048947c52db32b5c65
+  m_configObjects: {}

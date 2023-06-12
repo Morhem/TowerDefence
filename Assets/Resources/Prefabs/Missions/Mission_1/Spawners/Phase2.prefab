@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3963126378858593819
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3963126378858593816}
+  - component: {fileID: 3963126378858593817}
+  m_Layer: 0
+  m_Name: Phase2
+  m_TagString: Untagged
+  m_Icon: {fileID: 2488908585195742037, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3963126378858593816
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3963126378858593819}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.24999997, y: 1, z: 0.25}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3963126378858593817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3963126378858593819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9386e1650bd9ec449ab725deedd3b549, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PhaseTimerSeconds: 120
+  WavePrefabs:
+  - {fileID: 6244118139622525377, guid: dcf44c6ba8307aa49aa1dcb6dc4a5d83, type: 3}
+  - {fileID: 6244118139622525377, guid: cc269a502c93265419236a2bf8f5835e, type: 3}
+  - {fileID: 6244118139622525377, guid: 4822e83a41f0d8a4ab2a01d91e1313c1, type: 3}
+  WavesSO:
+  - {fileID: 11400000, guid: 2e45399ddbaf4174e8e5ce3342407a4f, type: 2}
+  - {fileID: 11400000, guid: 5de82140e025bc94c84a2e30089f2ad6, type: 2}
+  - {fileID: 11400000, guid: 1c65e45813c6dc745bbe4a0014764692, type: 2}
+  PhaseBossPrefab: {fileID: 8172442304542317006, guid: 749050ee36c428c4e96a3f1b29fa0559, type: 3}
