@@ -1727,7 +1727,6 @@ GameObject:
   - component: {fileID: 2763914743243945539}
   - component: {fileID: 2436971512463497434}
   - component: {fileID: 138357539737056698}
-  - component: {fileID: -3389452661242950075}
   m_Layer: 0
   m_Name: MC07
   m_TagString: Untagged
@@ -1806,6 +1805,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d9549cdc51e5f746861a31b0995c494, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CharacterName: Fire
   CharacterColor: {r: 0.9150943, g: 0.52671397, b: 0.004316493, a: 1}
   CharacterPortrait: {fileID: 21300000, guid: da955cc8f8e049a4ebc8b372c7086284, type: 3}
   UnlockedByDefault: 0
@@ -1816,35 +1816,6 @@ MonoBehaviour:
   - {fileID: -3321126816459891185, guid: e9e6b15c1ec51e1408bc122e8545bf98, type: 3}
   Stats: {fileID: 0}
   OnhitEffects: []
---- !u!114 &-3389452661242950075
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3247294876424170745}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: faefd0302d7e2194997f579298cd2ed8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Target: {fileID: 0}
-  IgnoreTargets: []
-  characterName: Fire
-  CharacterMetaLevel: 0
-  Damage: 18
-  CriticalChance: 0
-  CriticalDamagePercent: 50
-  Cooldown: 2.25
-  ProjectileSpeed: 20
-  AOERadius: 3
-  RicochetAmount: 0
-  RicochetRange: 0
-  TTL: 10
-  Bounces: 0
-  Burst: 1
-  BurstCooldown: 0
-  Targeting: 1
 --- !u!1 &3267857888698750000
 GameObject:
   m_ObjectHideFlags: 0

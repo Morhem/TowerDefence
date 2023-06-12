@@ -17,12 +17,12 @@ public class CharacterSelectButton : MonoBehaviour
         var text = GetComponentInChildren<TMPro.TMP_Text>();
         var images = GetComponentsInChildren<Image>();
         var character = characterPrefab.GetComponent<Character>();
-        var csb = characterPrefab.GetComponent<CharacterStatBlock>();
+        var cs = characterPrefab.GetComponent<Character>();
         background = images[0];
         portrait = images[1];
-        int level = CharacterScreenScript.GetCharacterLevel(csb.characterName);
+        int level = CharacterScreenScript.GetCharacterLevel(cs.CharacterName);
         css = GameObject.Find("CharactersTab").GetComponent<CharacterScreenScript>();
-        text.text = $"{csb.characterName} ({level})";
+        text.text = $"{cs.CharacterName} ({level})";
         portrait.sprite = character.CharacterPortrait;
     }
 

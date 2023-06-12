@@ -4292,7 +4292,6 @@ GameObject:
   - component: {fileID: 8312535206257193948}
   - component: {fileID: 8419118618931125573}
   - component: {fileID: -5765867550938104822}
-  - component: {fileID: -7945340993641958428}
   m_Layer: 0
   m_Name: Hurricane_New
   m_TagString: Untagged
@@ -4371,6 +4370,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d9549cdc51e5f746861a31b0995c494, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CharacterName: Hurricane
   CharacterColor: {r: 0.22241008, g: 0.9245283, b: 0.6332022, a: 1}
   CharacterPortrait: {fileID: 21300000, guid: eacd587b11039964da147bc44a0f1070, type: 3}
   UnlockedByDefault: 0
@@ -4382,35 +4382,6 @@ MonoBehaviour:
   - {fileID: -3321126816459891185, guid: 51f08b8aea3c23e438395a8bf66b7225, type: 3}
   Stats: {fileID: 0}
   OnhitEffects: []
---- !u!114 &-7945340993641958428
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8653629399067994470}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: faefd0302d7e2194997f579298cd2ed8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Target: {fileID: 0}
-  IgnoreTargets: []
-  characterName: Hurricane
-  CharacterMetaLevel: 0
-  Damage: 30
-  CriticalChance: 0
-  CriticalDamagePercent: 0
-  Cooldown: 11
-  ProjectileSpeed: 10
-  AOERadius: 4
-  RicochetAmount: 0
-  RicochetRange: 0
-  TTL: 10
-  Bounces: 1000000
-  Burst: 1
-  BurstCooldown: 0
-  Targeting: 1
 --- !u!1 &8673554672918630831
 GameObject:
   m_ObjectHideFlags: 0

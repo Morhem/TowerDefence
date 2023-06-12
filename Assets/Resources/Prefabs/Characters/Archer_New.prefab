@@ -2802,7 +2802,6 @@ GameObject:
   - component: {fileID: 6459151476025802039}
   - component: {fileID: 6785021894422827950}
   - component: {fileID: -8072542844607737789}
-  - component: {fileID: 3234668452624138971}
   m_Layer: 0
   m_Name: Archer_New
   m_TagString: Untagged
@@ -2881,6 +2880,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d9549cdc51e5f746861a31b0995c494, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CharacterName: Archer
   CharacterColor: {r: 0.03127098, g: 0, b: 1, a: 1}
   CharacterPortrait: {fileID: 21300000, guid: 493427dc3ed336b45964febb8a3d63bf, type: 3}
   UnlockedByDefault: 0
@@ -2892,35 +2892,6 @@ MonoBehaviour:
   - {fileID: -3321126816459891185, guid: cebc324b5e0d0cc409e9a8f7f1f63d8c, type: 3}
   Stats: {fileID: 0}
   OnhitEffects: []
---- !u!114 &3234668452624138971
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5974117982014891917}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: faefd0302d7e2194997f579298cd2ed8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Target: {fileID: 0}
-  IgnoreTargets: []
-  characterName: Archer
-  CharacterMetaLevel: 0
-  Damage: 35
-  CriticalChance: 0
-  CriticalDamagePercent: 50
-  Cooldown: 1
-  ProjectileSpeed: 40
-  AOERadius: 0
-  RicochetAmount: 0
-  RicochetRange: 0
-  TTL: 40
-  Bounces: 0
-  Burst: 1
-  BurstCooldown: 0.15
-  Targeting: 0
 --- !u!1 &6222444116760881154
 GameObject:
   m_ObjectHideFlags: 0

@@ -18460,7 +18460,6 @@ GameObject:
   - component: {fileID: 2479986600879591557}
   - component: {fileID: 2729207564721929756}
   - component: {fileID: 2730838746690450711}
-  - component: {fileID: 4427073609049481184}
   m_Layer: 0
   m_Name: Frost_New
   m_TagString: Untagged
@@ -18539,6 +18538,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d9549cdc51e5f746861a31b0995c494, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CharacterName: Frost
   CharacterColor: {r: 0.21698113, g: 0.41358918, b: 0.8679245, a: 1}
   CharacterPortrait: {fileID: 21300000, guid: db7547bd366d94b498604067798dd2f8, type: 3}
   UnlockedByDefault: 0
@@ -18550,35 +18550,6 @@ MonoBehaviour:
   Stats: {fileID: 0}
   OnhitEffects:
   - {fileID: 2511698407815397031, guid: b839a8f3375f7b54d85b123a4cea7a30, type: 3}
---- !u!114 &4427073609049481184
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2963788568580344383}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: faefd0302d7e2194997f579298cd2ed8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Target: {fileID: 0}
-  IgnoreTargets: []
-  characterName: Frost
-  CharacterMetaLevel: 0
-  Damage: 18
-  CriticalChance: 0
-  CriticalDamagePercent: 0
-  Cooldown: 2.25
-  ProjectileSpeed: 20
-  AOERadius: 3
-  RicochetAmount: 0
-  RicochetRange: 0
-  TTL: 10
-  Bounces: 0
-  Burst: 1
-  BurstCooldown: 0
-  Targeting: 1
 --- !u!1 &2983643634017366774
 GameObject:
   m_ObjectHideFlags: 0

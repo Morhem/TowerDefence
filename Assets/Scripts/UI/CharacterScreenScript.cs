@@ -71,11 +71,11 @@ public class CharacterScreenScript : MonoBehaviour
         lines.Add("Character,Level,(Ц)Damage,(Ц)CriticalChance,(Ц)CriticalDamagePercent,(Д)Cooldown,(Д)Projectile speed,(Д)AOE Radius,(Ц)RicochetAmount,(Д)Ricochet range,(Д)Bullet Life(sec),(Ц)Bounces,(Ц)Burst,(Д)BurstCooldown,(Ц)Targeting (0 - ближний, 1 - случайный)");
         foreach (var character in AllCharacterPrefabs)
         {
-            var csb = character.GetComponent<CharacterStatBlock>();
+            var cs = character.GetComponent<Character>();
             for (int i = 1; i < 11; i++)
             {
-                csb.CharacterMetaLevel = i;
-                var line = csb.SaveToString();
+                cs.Stats.CharacterMetaLevel = i;
+                var line = cs.Stats.SaveToString();
                 lines.Add(line);
             }
         }
@@ -98,9 +98,11 @@ public class CharacterScreenScript : MonoBehaviour
         AllCharacterPrefabs = Resources.LoadAll<GameObject>("Prefabs/Characters").ToList();
         foreach( var character in AllCharacterPrefabs)
         {
-            var csb = character.GetComponent<CharacterStatBlock>();
-            var level = SaveLoadSystem.LoadDataInt($"{CONST_CHARACTER_LEVELS}{csb.characterName}");
-            characterLevels[csb.characterName] = level;
+            var cs = character.GetComponent<Character>();
+            var level = SaveLoadSystem.LoadDataInt($"{CONST_CHARACTER_LEVELS}{cs.CharacterName}");
+            if (level == 0)
+                level = 1;
+            characterLevels[cs.CharacterName] = level;
         }
     }
 
@@ -132,8 +134,8 @@ public class CharacterScreenScript : MonoBehaviour
         {
             if (MissionController.main.Characters.Contains(character))
                 continue;
-            var csb = character.GetComponent<CharacterStatBlock>();
-            int level = GetCharacterLevel(csb.characterName);
+            var cs = character.GetComponent<Character>();
+            int level = GetCharacterLevel(cs.CharacterName);
 
             var panel = level == 0 ? panelLocked : panelCollection;
             var cbutton = GameObject.Instantiate(characterButtonPrefab, panel);
@@ -161,13 +163,13 @@ public class CharacterScreenScript : MonoBehaviour
                 break;
             var charIndex = Random.Range(0, tmp.Count());
             var character = tmp[charIndex].GetComponent<Character>();
-            var csb = tmp[charIndex].GetComponent<CharacterStatBlock>();
+            var cs = tmp[charIndex].GetComponent<Character>();
             tmp.RemoveAt(charIndex);
             shardsList.Add(character);
 
-            int level = GetCharacterLevel(csb.characterName);
+            int level = GetCharacterLevel(cs.CharacterName);
             if (level == 0)
-                LevelupCharacter(csb);
+                LevelupCharacter(cs.Stats);
 
             FillCollection();
             LoadChosenTeam();
@@ -187,8 +189,8 @@ public class CharacterScreenScript : MonoBehaviour
     public void GetRandomLevel()
     {
         var charIndex = Random.Range(0, AllCharacterPrefabs.Count());
-        var csb = AllCharacterPrefabs[charIndex].GetComponent<CharacterStatBlock>();
-        LevelupCharacter(csb);
+        var cs = AllCharacterPrefabs[charIndex].GetComponent<Character>();
+        LevelupCharacter(cs.Stats);
 
         FillCollection();
         LoadChosenTeam();

@@ -18746,7 +18746,6 @@ GameObject:
   - component: {fileID: 3633111050156244789}
   - component: {fileID: 3882628708329902508}
   - component: {fileID: 527838886876693117}
-  - component: {fileID: -7544646465006115085}
   m_Layer: 0
   m_Name: Chakram_New
   m_TagString: Untagged
@@ -18825,6 +18824,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d9549cdc51e5f746861a31b0995c494, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CharacterName: Chakram
   CharacterColor: {r: 0.20530175, g: 0.11894804, b: 0.764151, a: 1}
   CharacterPortrait: {fileID: 21300000, guid: 746b29474fe0d1c45878605ca4bf62ad, type: 3}
   UnlockedByDefault: 0
@@ -18835,35 +18835,6 @@ MonoBehaviour:
   - {fileID: -3321126816459891185, guid: d896ce5ff8a52eb45b4b81298553ca6c, type: 3}
   Stats: {fileID: 0}
   OnhitEffects: []
---- !u!114 &-7544646465006115085
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4116492287359034767}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: faefd0302d7e2194997f579298cd2ed8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Target: {fileID: 0}
-  IgnoreTargets: []
-  characterName: Chakram
-  CharacterMetaLevel: 0
-  Damage: 18
-  CriticalChance: 0
-  CriticalDamagePercent: 50
-  Cooldown: 1.2
-  ProjectileSpeed: 18
-  AOERadius: 0
-  RicochetAmount: 1
-  RicochetRange: 8
-  TTL: 40
-  Bounces: 0
-  Burst: 1
-  BurstCooldown: 0.15
-  Targeting: 0
 --- !u!1 &4137051035602918726
 GameObject:
   m_ObjectHideFlags: 0

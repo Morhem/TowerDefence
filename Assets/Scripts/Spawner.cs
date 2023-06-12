@@ -39,7 +39,6 @@ public class Spawner : MonoBehaviour
 
         timerLeft = PhaseTimerSeconds;
         WaveIndex = 0;
-        int i = 0;
     }
 
     Vector3 GetRandomPosition()

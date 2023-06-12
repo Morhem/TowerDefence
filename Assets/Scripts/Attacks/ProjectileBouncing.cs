@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ProjectileBouncing : BaseTowerAttack
 {
-    Targeting targeting;
+    Targeting targeting = Targeting.ClosestEnemy;
     GameObject Target;
     List<GameObject> ignoreTargets = new List<GameObject>();
     public bool  DestroyOnMonsterHit;

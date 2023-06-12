@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class CharacterStatBlock : MonoBehaviour
+public class CharacterStatBlock
 {
     public GameObject Target;
     public GameObject[] IgnoreTargets = new GameObject[] { };

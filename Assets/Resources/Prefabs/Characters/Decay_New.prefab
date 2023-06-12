@@ -109,7 +109,6 @@ GameObject:
   - component: {fileID: 1128676182604543883}
   - component: {fileID: 586422874960648466}
   - component: {fileID: -3868695381027867627}
-  - component: {fileID: 403800547999543349}
   m_Layer: 0
   m_Name: Decay_New
   m_TagString: Untagged
@@ -188,6 +187,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4deb34d2b6748bc47be8c1b7dbae1e44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CharacterName: Decay
   CharacterColor: {r: 0.95881975, g: 0.07075471, b: 1, a: 1}
   CharacterPortrait: {fileID: 21300000, guid: 556a9a37b985b7a41a44a6760d2a2a9e, type: 3}
   UnlockedByDefault: 0
@@ -199,35 +199,6 @@ MonoBehaviour:
   Stats: {fileID: 0}
   OnhitEffects: []
   projectilesAsChildren: 0
---- !u!114 &403800547999543349
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 351858764147993905}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: faefd0302d7e2194997f579298cd2ed8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Target: {fileID: 0}
-  IgnoreTargets: []
-  characterName: Decay
-  CharacterMetaLevel: 0
-  Damage: 15
-  CriticalChance: 0
-  CriticalDamagePercent: 0
-  Cooldown: 1
-  ProjectileSpeed: 0
-  AOERadius: 10
-  RicochetAmount: 0
-  RicochetRange: 0
-  TTL: 0
-  Bounces: 0
-  Burst: 1
-  BurstCooldown: 0
-  Targeting: 0
 --- !u!1 &558078838914780909
 GameObject:
   m_ObjectHideFlags: 0

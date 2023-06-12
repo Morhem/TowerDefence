@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class Character : MonoBehaviour
 {
     [SerializeField]
+    public string CharacterName;
+    [SerializeField]
     public Color CharacterColor;
     [SerializeField]
     public Sprite CharacterPortrait;
@@ -14,18 +16,18 @@ public class Character : MonoBehaviour
     public bool UnlockedByDefault;
     [System.NonSerialized]
     public bool Unlocked;
+    [System.NonSerialized]
+    public CharacterStatBlock Stats = new CharacterStatBlock();
     Animator anim;
 
     public GameObject ProjectilePrefab;
     public UpgradeButton[] PossibleUpgrades;
-    public CharacterStatBlock Stats;
     protected float ongoingCooldown = 0f;
     protected int Level = 0;
     public List<StatusEffect> OnhitEffects = new List<StatusEffect>();
 
     protected virtual void Start()
     {
-        Stats = GetComponent<CharacterStatBlock>();
         anim = GetComponent<Animator>();
         ongoingCooldown = 0;
     }

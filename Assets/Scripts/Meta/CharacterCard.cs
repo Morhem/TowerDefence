@@ -18,9 +18,9 @@ public class CharacterCard : MonoBehaviour
         background = GetComponentsInChildren<Image>()[0];
         portrait = GetComponentsInChildren<Image>()[1];
 
-        var csb = character.gameObject.GetComponent<CharacterStatBlock>();
+        var cs = character.gameObject.GetComponent<Character>();
 
-        charName.text = csb.characterName;
+        charName.text = cs.CharacterName;
         countText.text = count.ToString();
         background.color = character.CharacterColor;
         portrait.sprite = character.CharacterPortrait;

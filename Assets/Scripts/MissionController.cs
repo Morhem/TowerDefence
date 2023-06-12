@@ -344,11 +344,10 @@ public class MissionController : MonoBehaviour
             {
                 var character = GameObject.Instantiate(Characters[i], spawnPoints[i].transform.position, Quaternion.identity);
                 var ts = character.GetComponent<Character>();
-                var csb = character.GetComponent<CharacterStatBlock>();
                 towers.Add(ts);
 
-                var levelStats = CharacterScreenScript.GetCharacterStats(csb.characterName);
-                csb.FillFromCSB(levelStats);
+                var levelStats = CharacterScreenScript.GetCharacterStats(ts.CharacterName);
+                ts.Stats.FillFromCSB(levelStats);
             }
         }
     }

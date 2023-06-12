@@ -1596,7 +1596,6 @@ GameObject:
   - component: {fileID: 4586641829804141223}
   - component: {fileID: 4048101698567881790}
   - component: {fileID: -5944849285782979846}
-  - component: {fileID: -7946942897541906039}
   m_Layer: 0
   m_Name: Crossbow_New
   m_TagString: Untagged
@@ -1675,6 +1674,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d9549cdc51e5f746861a31b0995c494, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CharacterName: Crossbow
   CharacterColor: {r: 0.11012435, g: 1, b: 0, a: 1}
   CharacterPortrait: {fileID: 21300000, guid: ae0ec531ce299bf47893099681122f4c, type: 3}
   UnlockedByDefault: 0
@@ -1685,35 +1685,6 @@ MonoBehaviour:
   - {fileID: -3321126816459891185, guid: cd4d3bb0777663649a0e0b48ee00aff1, type: 3}
   Stats: {fileID: 0}
   OnhitEffects: []
---- !u!114 &-7946942897541906039
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3813659233109159965}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: faefd0302d7e2194997f579298cd2ed8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Target: {fileID: 0}
-  IgnoreTargets: []
-  characterName: Crossbow
-  CharacterMetaLevel: 0
-  Damage: 15
-  CriticalChance: 0
-  CriticalDamagePercent: 0
-  Cooldown: 2.1
-  ProjectileSpeed: 27
-  AOERadius: 0
-  RicochetAmount: 0
-  RicochetRange: 1
-  TTL: 1000000
-  Bounces: 1
-  Burst: 1
-  BurstCooldown: 0.15
-  Targeting: 1
 --- !u!1 &4012824693027869633
 GameObject:
   m_ObjectHideFlags: 0
