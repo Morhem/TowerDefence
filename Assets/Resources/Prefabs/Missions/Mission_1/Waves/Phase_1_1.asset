@@ -16,4 +16,4 @@ MonoBehaviour:
   Monsters:
   - {fileID: 1711228206799690, guid: 62892e197ae4807418868bda8f0ea568, type: 3}
   - {fileID: 1711228206799690, guid: 62892e197ae4807418868bda8f0ea568, type: 3}
-  Delay: 0
+  Delay: 1

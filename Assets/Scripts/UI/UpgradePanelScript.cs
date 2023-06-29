@@ -5,13 +5,16 @@ using UnityEngine;
 
 public class UpgradePanelScript : MonoBehaviour
 {
-    public Dictionary<UpgradeButton, Character> upgradePool = new Dictionary<UpgradeButton, Character>();
+    public Dictionary<AbilityCardScriptableObject, Character> upgradePool = new Dictionary<AbilityCardScriptableObject, Character>();
     public int upgradeCount;
     List<GameObject> existingButtons = new List<GameObject>();
+
+    public GameObject buttonPrefab;
 
     private void Start()
     {
         MissionController.main.upgradeInProgress = true;
+        buttonPrefab = MissionController.main.upgradeButtonPrefab;
         CreateButtons();
     }
     public void CreateButtons()
@@ -30,12 +33,13 @@ public class UpgradePanelScript : MonoBehaviour
                 break;
             var buttonIndex = Random.Range(0, upgradePoolTMP.Count());
             var kvp = upgradePoolTMP[buttonIndex];
-            var upButton = kvp.Key;
+            var abilityCard = kvp.Key;
             var tower = kvp.Value;
-            var button = GameObject.Instantiate(upButton.gameObject);
+            var button = GameObject.Instantiate(buttonPrefab, transform);
             existingButtons.Add(button);
             var bs = button.GetComponent<UpgradeButton>();
             bs.tower = tower;
+            bs.Ability = abilityCard;
             //if (bs.singularUpgrade)
             upgradePoolTMP.RemoveAt(buttonIndex);
         }

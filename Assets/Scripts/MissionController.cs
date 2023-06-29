@@ -85,6 +85,19 @@ public class MissionController : MonoBehaviour
     {
         Pause = true;
     }
+    void ReSaveUpgradeButtonsAsScriptables()
+    {
+        var allUBs = Resources.LoadAll<GameObject>("UIPrefabs/Abilities");
+
+        foreach (var ub in allUBs.Skip(1))
+        {
+            var ubs = ub.GetComponent<UpgradeButton>();
+            if (ubs != null)
+            {
+                ubs.SaveSO();
+            }
+        }
+    }
     public void LoadMission(string sceneName)
     {
         var spawners = Resources.LoadAll<Spawner>($"Prefabs/Missions/{sceneName}/Spawners");
@@ -225,7 +238,7 @@ public class MissionController : MonoBehaviour
         WaveCounterText.text = $"Wave {wave + 1}";
     }
 
-    bool CheckUpgrade(UpgradeButton upgradeButton, bool isChest)
+    bool CheckUpgrade(AbilityCardScriptableObject upgradeButton, bool isChest)
     {
         if (upgradeButton.singularUpgrade && upgrades.Any(x => x.id == upgradeButton.ID))
             return false;
@@ -241,28 +254,34 @@ public class MissionController : MonoBehaviour
     public void CreateUpgradeWindow(bool isChest)
     {
         if (upgradeInProgress)
+        {
             pendingUpgradeWindows.Enqueue(isChest);
+            return;
+        }
         Pause = true;
-        int upgradeCount = isChest ? 1 : 3;
+        upgradeInProgress = true;
+        //int upgradeCount = isChest ? 1 : 3;
+        int upgradeCount = 3;
         var canvas = GameObject.Find("Canvas");
 
         var allAvailableUpgrades = PossibleUpgrades.ToList();
         foreach (var tower in towers)
             allAvailableUpgrades.AddRange(tower.PossibleUpgrades);
 
-        if (isChest)
-        {
-            if (allAvailableUpgrades.Any(x => x.chestOnly))
-            {
-                isChest = Random.Range(0, 100) > 50;
-            }
-            else
-                isChest = false;
-        }
+        //if (isChest)
+        //{
+        //    if (allAvailableUpgrades.Any(x => x.Ability.chestOnly))
+        //    {
+        //        isChest = Random.Range(0, 100) > 50;
+        //    }
+        //    else
+        //        isChest = false;
+        //}
 
 
-            Dictionary<UpgradeButton, Character> tmpUpgrades = new Dictionary<UpgradeButton, Character>();
-        foreach (var upgrade in PossibleUpgrades)
+        Dictionary<AbilityCardScriptableObject, Character> tmpUpgrades = new Dictionary<AbilityCardScriptableObject, Character>();
+        var commonUpgrades = Resources.LoadAll<AbilityCardScriptableObject>($"UIPrefabs/Abilities/All");
+        foreach (var upgrade in commonUpgrades)
         {
             if (CheckUpgrade(upgrade, isChest))
                 tmpUpgrades[upgrade] = null;
@@ -270,11 +289,20 @@ public class MissionController : MonoBehaviour
 
         foreach (var tower in towers)
         {
-            foreach (var upgrade in tower.PossibleUpgrades)
+            var upgrades = Resources.LoadAll<AbilityCardScriptableObject>($"UIPrefabs/Abilities/{tower.CharacterName}");
+
+            foreach (var upgrade in upgrades)
             {
                 if (CheckUpgrade(upgrade, isChest))
                     tmpUpgrades[upgrade] = tower;
             }
+
+
+            //foreach (var upgrade in tower.PossibleUpgrades)
+            //{
+            //    if (CheckUpgrade(upgrade, isChest))
+            //        tmpUpgrades[upgrade] = tower;
+            //}
         }
         var upgrader = GameObject.Instantiate(MissionController.main.upgradeWindowPrefab, canvas.transform).GetComponentInChildren<UpgradePanelScript>();
         upgrader.upgradePool = tmpUpgrades;

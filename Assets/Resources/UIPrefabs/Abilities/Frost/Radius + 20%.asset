@@ -9,10 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1fd74f2b90a38046ad6fcfcac77ba0e, type: 3}
-  m_Name: Phase_1_3
+  m_Script: {fileID: 11500000, guid: f1e51e87c4f0d584ea81a09531eae40b, type: 3}
+  m_Name: Radius + 20%
   m_EditorClassIdentifier: 
-  Repeats: 1
-  Monsters:
-  - {fileID: 1091293637548798, guid: 20b085234e6233e4eb71c6978f2eb374, type: 3}
-  Delay: 5
+  ID: Fro 3
+  title: Frost Radius +20%
+  singularUpgrade: 0
+  chestOnly: 0
+  characterSprite: {fileID: 0}
+  isPublic: 0
+  perk: 3
+  magnitude1: 0.2
+  magnitude2: 0

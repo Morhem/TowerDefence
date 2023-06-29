@@ -130,11 +130,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44e3804a1ec7bb34c8a9818d0ba3f270, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: Fir 2
-  title: Fire CD -15%
+  ID: Fro 2
+  title: Frost CD -15%
   singularUpgrade: 0
+  chestOnly: 0
   characterSprite: {fileID: 0}
   isPublic: 0
   perk: 8
   magnitude1: 0.15
   magnitude2: 0
+  Ability: {fileID: 0}
