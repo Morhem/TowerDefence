@@ -7,6 +7,7 @@ public class UpgradePanelScript : MonoBehaviour
 {
     public Dictionary<AbilityCardScriptableObject, Character> upgradePool = new Dictionary<AbilityCardScriptableObject, Character>();
     public int upgradeCount;
+    public bool isChest;
     List<GameObject> existingButtons = new List<GameObject>();
 
     public GameObject buttonPrefab;
@@ -31,7 +32,14 @@ public class UpgradePanelScript : MonoBehaviour
         {
             if (!upgradePoolTMP.Any())
                 break;
+            
+
             var buttonIndex = Random.Range(0, upgradePoolTMP.Count());
+            if (isChest && upgradePoolTMP.Any(x => x.Key.chestOnly))
+            {
+                buttonIndex = upgradePoolTMP.IndexOf(upgradePoolTMP.First(x => x.Key.chestOnly));
+            }
+
             var kvp = upgradePoolTMP[buttonIndex];
             var abilityCard = kvp.Key;
             var tower = kvp.Value;

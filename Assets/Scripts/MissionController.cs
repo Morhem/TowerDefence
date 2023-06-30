@@ -238,11 +238,11 @@ public class MissionController : MonoBehaviour
         WaveCounterText.text = $"Wave {wave + 1}";
     }
 
-    bool CheckUpgrade(AbilityCardScriptableObject upgradeButton, bool isChest)
+    bool CheckUpgrade(AbilityCardScriptableObject abilityCard, bool isChest)
     {
-        if (upgradeButton.singularUpgrade && upgrades.Any(x => x.id == upgradeButton.ID))
+        if (abilityCard.singularUpgrade && upgrades.Any(x => x.id == abilityCard.ID))
             return false;
-        if (isChest != upgradeButton.chestOnly)
+        if (!isChest && abilityCard.chestOnly)
             return false;
         return true;
     }
@@ -267,17 +267,6 @@ public class MissionController : MonoBehaviour
         var allAvailableUpgrades = PossibleUpgrades.ToList();
         foreach (var tower in towers)
             allAvailableUpgrades.AddRange(tower.PossibleUpgrades);
-
-        //if (isChest)
-        //{
-        //    if (allAvailableUpgrades.Any(x => x.Ability.chestOnly))
-        //    {
-        //        isChest = Random.Range(0, 100) > 50;
-        //    }
-        //    else
-        //        isChest = false;
-        //}
-
 
         Dictionary<AbilityCardScriptableObject, Character> tmpUpgrades = new Dictionary<AbilityCardScriptableObject, Character>();
         var commonUpgrades = Resources.LoadAll<AbilityCardScriptableObject>($"UIPrefabs/Abilities/All");
@@ -306,6 +295,7 @@ public class MissionController : MonoBehaviour
         }
         var upgrader = GameObject.Instantiate(MissionController.main.upgradeWindowPrefab, canvas.transform).GetComponentInChildren<UpgradePanelScript>();
         upgrader.upgradePool = tmpUpgrades;
+        upgrader.isChest = isChest;
         upgrader.upgradeCount = upgradeCount;
     }
 
