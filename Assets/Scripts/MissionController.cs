@@ -10,11 +10,23 @@ public class MissionController : MonoBehaviour
     #region Prefabs
     GameObject gameoverPanelPrefab;
     GameObject winPanelPrefab;
+    GameObject pauseWindowPrefab;
     GameObject upgradeWindowPrefab;
     public GameObject upgradeButtonPrefab;
     GameObject missionInterfacePrefab;
     GameObject chestPrefab;
     public Dictionary<Perk, Sprite> icons = new Dictionary<Perk, Sprite>();
+    #endregion
+    #region UI Instances
+    public static MissionController main;
+    RectTransform canvas;
+    GameObject missionInterface;
+    Button pauseButton;
+    GameObject pauseWindow;
+    Slider XPSlider;
+    Slider HPSlider;
+    TMPro.TMP_Text WaveCounterText;
+    TMPro.TMP_Text LevelText;
     #endregion
     #region Player Stats
     [SerializeField]
@@ -35,15 +47,7 @@ public class MissionController : MonoBehaviour
 
     public List<UpgradeButton> PossibleUpgrades = new List<UpgradeButton>();
     #endregion
-    #region UI Instances
-    public static MissionController main;
-    RectTransform canvas;
-    GameObject missionInterface;
-    Slider XPSlider;
-    Slider HPSlider;
-    TMPro.TMP_Text WaveCounterText;
-    TMPro.TMP_Text LevelText;
-    #endregion
+    
     #region Gameplay
     [System.NonSerialized]
     public GameObject[] Characters = new GameObject[3];
@@ -63,15 +67,15 @@ public class MissionController : MonoBehaviour
     [System.NonSerialized]
     public List<Monster> Monsters = new List<Monster>();
     [System.NonSerialized]
-    List<Character> towers = new List<Character>();
+    public List<Character> characters = new List<Character>();
 
     [System.NonSerialized]
     public bool Pause = false;
 
     [SerializeField]
     int Revives;
-
-    List<Upgrade> upgrades = new List<Upgrade>();
+    [System.NonSerialized]
+    public List<Upgrade> upgrades = new List<Upgrade>();
     #endregion
 
 
@@ -107,6 +111,7 @@ public class MissionController : MonoBehaviour
         missionInterfacePrefab = Resources.Load<GameObject>("UIPrefabs/MissionInterface");
         gameoverPanelPrefab = Resources.Load<GameObject>("UIPrefabs/GameOverPanel");
         winPanelPrefab = Resources.Load<GameObject>("UIPrefabs/WinPanel");
+        pauseWindowPrefab = Resources.Load<GameObject>("UIPrefabs/PauseWindow");
         upgradeWindowPrefab = Resources.Load<GameObject>("UIPrefabs/PanelUpgrades");
         upgradeButtonPrefab = Resources.Load<GameObject>("UIPrefabs/Abilities/AbilityCard");
 
@@ -133,6 +138,10 @@ public class MissionController : MonoBehaviour
         missionInterface = GameObject.Instantiate(missionInterfacePrefab, canvas);
 
 
+        pauseButton = GameObject.Find("PauseButton").GetComponent<Button>();
+        pauseButton.onClick.RemoveAllListeners();
+        pauseButton.onClick.AddListener(TogglePauseWindow);
+
         HPSlider = GameObject.Find("HPSlider").GetComponent<Slider>();
         XPSlider = GameObject.Find("XPSlider").GetComponent<Slider>();
         WaveCounterText = GameObject.Find("WaveCounterText").GetComponent<TMPro.TMP_Text>();
@@ -156,10 +165,10 @@ public class MissionController : MonoBehaviour
             GameObject.Destroy(monster.gameObject);
         }
 
-        SpawnCharacters();
         Level = 0;
         currentHP = PlayerHP;
-        
+
+        SpawnCharacters();
         SetXPSlider();
         SetHPSlider();
         SetLevelText();
@@ -238,11 +247,13 @@ public class MissionController : MonoBehaviour
         WaveCounterText.text = $"Wave {wave + 1}";
     }
 
-    bool CheckUpgrade(AbilityCardScriptableObject abilityCard, bool isChest)
+    bool CheckUpgrade(AbilityCardScriptableObject abilityCard, bool isChest, Character character)
     {
         if (abilityCard.singularUpgrade && upgrades.Any(x => x.id == abilityCard.ID))
             return false;
         if (!isChest && abilityCard.chestOnly)
+            return false;
+        if (isChest && abilityCard.chestOnly && upgrades.Count(x => x.character == character) < 3)
             return false;
         return true;
     }
@@ -265,25 +276,25 @@ public class MissionController : MonoBehaviour
         var canvas = GameObject.Find("Canvas");
 
         var allAvailableUpgrades = PossibleUpgrades.ToList();
-        foreach (var tower in towers)
-            allAvailableUpgrades.AddRange(tower.PossibleUpgrades);
+        foreach (var character in characters)
+            allAvailableUpgrades.AddRange(character.PossibleUpgrades);
 
         Dictionary<AbilityCardScriptableObject, Character> tmpUpgrades = new Dictionary<AbilityCardScriptableObject, Character>();
         var commonUpgrades = Resources.LoadAll<AbilityCardScriptableObject>($"UIPrefabs/Abilities/All");
         foreach (var upgrade in commonUpgrades)
         {
-            if (CheckUpgrade(upgrade, isChest))
+            if (CheckUpgrade(upgrade, isChest, null))
                 tmpUpgrades[upgrade] = null;
         }
 
-        foreach (var tower in towers)
+        foreach (var character in characters)
         {
-            var upgrades = Resources.LoadAll<AbilityCardScriptableObject>($"UIPrefabs/Abilities/{tower.CharacterName}");
+            var upgrades = Resources.LoadAll<AbilityCardScriptableObject>($"UIPrefabs/Abilities/{character.CharacterName}");
 
             foreach (var upgrade in upgrades)
             {
-                if (CheckUpgrade(upgrade, isChest))
-                    tmpUpgrades[upgrade] = tower;
+                if (CheckUpgrade(upgrade, isChest, character))
+                    tmpUpgrades[upgrade] = character;
             }
 
 
@@ -319,7 +330,7 @@ public class MissionController : MonoBehaviour
             }
             else
             {
-                foreach (var tw in towers)
+                foreach (var tw in characters)
                 {
                     tw.Upgrade(upgrade);
                 }
@@ -351,10 +362,10 @@ public class MissionController : MonoBehaviour
     public void SpawnCharacters()
     {
         var spawnPoints = GameObject.FindGameObjectsWithTag("CharacterSlot");
-        foreach (var tower in towers)
+        foreach (var tower in characters)
             if (tower != null && tower && tower.gameObject.activeSelf)
                 GameObject.Destroy(tower.gameObject);
-        towers.Clear();
+        characters.Clear();
 
         for (int i = 0; i < spawnPoints.Length; i++)
         {
@@ -362,7 +373,7 @@ public class MissionController : MonoBehaviour
             {
                 var character = GameObject.Instantiate(Characters[i], spawnPoints[i].transform.position, Quaternion.identity);
                 var ts = character.GetComponent<Character>();
-                towers.Add(ts);
+                characters.Add(ts);
 
                 var levelStats = CharacterScreenScript.GetCharacterStats(ts.CharacterName);
                 ts.Stats.FillFromCSB(levelStats);
@@ -391,6 +402,20 @@ public class MissionController : MonoBehaviour
         GameObject.Destroy(gameoverPanel);
         currentHP = PlayerHP / 2;
         Pause = false;
+    }
+
+    public void TogglePauseWindow()
+    {
+        
+        if (pauseWindow != null && pauseWindow.activeSelf)
+        {
+            GameObject.Destroy(pauseWindow);
+        }
+        else
+        {
+            pauseWindow = GameObject.Instantiate(pauseWindowPrefab, missionInterface.transform);
+        }
+        
     }
 
     void GameOver()

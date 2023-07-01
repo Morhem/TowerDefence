@@ -46,7 +46,7 @@ public class UpgradePanelScript : MonoBehaviour
             var button = GameObject.Instantiate(buttonPrefab, transform);
             existingButtons.Add(button);
             var bs = button.GetComponent<UpgradeButton>();
-            bs.tower = tower;
+            bs.character = tower;
             bs.Ability = abilityCard;
             //if (bs.singularUpgrade)
             upgradePoolTMP.RemoveAt(buttonIndex);

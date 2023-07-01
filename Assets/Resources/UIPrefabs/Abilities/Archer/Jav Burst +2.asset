@@ -14,9 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: Arc 5
   title: +2 Arrow
-  singularUpgrade: 0
+  singularUpgrade: 1
   chestOnly: 1
-  characterSprite: {fileID: 0}
   isPublic: 0
   perk: 15
   magnitude1: 1

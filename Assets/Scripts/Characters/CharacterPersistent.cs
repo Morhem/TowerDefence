@@ -22,12 +22,10 @@ public class CharacterPersistent : Character
     
     void CreateProjectile(bool setStats, int orbitIndex)
     {
-        if (MissionController.main.Pause)
-            return;
         var proj = GameObject.Instantiate(ProjectilePrefab, MissionController.main.transform.position, Quaternion.identity).GetComponent<BaseTowerAttack>();
         projectiles.Add(proj);
-        if (projectilesAsChildren)
-            proj.transform.SetParent(transform);
+        //if (projectilesAsChildren)
+        //    proj.transform.SetParent(transform);
         if (setStats)
         {
             proj.SetStats(Stats);
@@ -41,7 +39,7 @@ public class CharacterPersistent : Character
     {
         var relativeAngle = (projectiles.Count() == 0 ? 0 : (360f / Stats.CurrentBurst)) * orbitIndex;
         //vector = Quaternion.AngleAxis(-45, Vector3.up) * vector;
-        proj.transform.position = (Quaternion.AngleAxis(relativeAngle, Vector3.up) * Vector3.forward * Stats.CurrentAOERadius);
+        proj.transform.position = (Quaternion.AngleAxis(relativeAngle, Vector3.up) * MissionController.main.transform.forward * Stats.CurrentAOERadius);
     }
 
     public override void Upgrade(Upgrade upgrade)

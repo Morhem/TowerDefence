@@ -15,5 +15,4 @@ MonoBehaviour:
   Repeats: 1
   Monsters:
   - {fileID: 1580023137681114, guid: 39562db1994eb3449beff3b6c5720792, type: 3}
-  - {fileID: 1580023137681114, guid: 39562db1994eb3449beff3b6c5720792, type: 3}
-  Delay: 1
+  Delay: 10

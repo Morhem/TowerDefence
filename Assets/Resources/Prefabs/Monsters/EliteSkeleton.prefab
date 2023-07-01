@@ -1697,6 +1697,7 @@ MonoBehaviour:
   stoppingDistance: 2
   attackDamage: 50
   attackCooldown: 2
+  MonsterWavePack: 0
   Effects: []
 --- !u!208 &8596396094423652912
 NavMeshObstacle:

@@ -11,7 +11,7 @@ public class UpgradeButton : MonoBehaviour
     public Color backgroundColor;
 
     [System.NonSerialized]
-    public Character tower;
+    public Character character;
 
     public AbilityCardScriptableObject Ability;
 
@@ -45,40 +45,35 @@ public class UpgradeButton : MonoBehaviour
 
     private void Start()
     {
-        var panel = GameObject.Find("ButtonPanel");
-
-
-
-
         var text = GetComponentInChildren<Text>();
         var background = GetComponent<Image>();
         var abilityIcon = transform.Find("AbilityIcon").GetComponent<Image>();
         var characterIcon = transform.Find("CharacterIcon").GetComponent<Image>();
         text.text = Ability.title;
-        background.color = tower?.CharacterColor ?? Color.gray;
+        background.color = character?.CharacterColor ?? Color.gray;
         abilityIcon.sprite = MissionController.main.icons[Ability.perk];
 
         var btnComponent = GetComponent<Button>();
         btnComponent.onClick.AddListener(Tap);
 
-        if (tower != null)
-            characterIcon.sprite = tower.CharacterPortrait;
+        if (character != null)
+            characterIcon.sprite = character.CharacterPortrait;
         else
             GameObject.Destroy(characterIcon.gameObject);
     }
     public void Tap()
     {
-        var upgrade = new Upgrade { perk = Ability.perk, magnitude1 = Ability.magnitude1, magnitude2 = Ability.magnitude2, id = Ability.ID };
+        var upgrade = new Upgrade { perk = Ability.perk, magnitude1 = Ability.magnitude1, magnitude2 = Ability.magnitude2, id = Ability.ID, character = character };
 
-        MissionController.main.Upgrade(upgrade, tower, Ability.isPublic);
+        MissionController.main.Upgrade(upgrade, character, Ability.isPublic);
 
         
 
         var panel = GameObject.Find("PanelUpgrades(Clone)");
         GameObject.Destroy(panel);
         MissionController.main.upgradeInProgress = false;
-        MissionController.main.CheckPendingUpgrades();
         MissionController.main.Pause = false;
+        MissionController.main.CheckPendingUpgrades();
     }
 
 
@@ -90,6 +85,7 @@ public class Upgrade
     public Perk perk;
     public float magnitude1;
     public float magnitude2;
+    public Character character;
 }
 
 public enum Perk
